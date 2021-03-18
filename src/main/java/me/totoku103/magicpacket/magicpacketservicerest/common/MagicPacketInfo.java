@@ -16,4 +16,5 @@ import java.util.Map;
 public class MagicPacketInfo {
     private String broadcastIp;
     private Map<String, String> macAddresses;
+    private int udpPort;
 }
