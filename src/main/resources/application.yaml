@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: magic-packet
+debug: true
+
+logging:
+  logback:
+    rollingpolicy:
+      clean-history-on-start: true

@@ -1,9 +1,5 @@
-spring:
-  application:
-    name: magic-packet
-
 wol:
   broadcast-ip: 192.168.0.255
   mac-addresses:
-    - 12-32-44-18-36-19
-    - 39-20-49-19-39-95
+    computerA: 12-32-44-18-36-19
+    computerB: 39-20-49-19-39-95
