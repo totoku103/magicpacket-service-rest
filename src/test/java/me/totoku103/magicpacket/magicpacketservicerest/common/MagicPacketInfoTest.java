@@ -42,4 +42,12 @@ class MagicPacketInfoTest {
         assertThat(macAddresses.size(), is(greaterThan(1)));
     }
 
+    @Test
+    @DisplayName("udpPort 값 존재 여부")
+    public void given_udpPort_when_applicationLoaded_then_greaterThanZeroAndIs9() {
+        final int udpPort = magicPacketInfo.getUdpPort();
+        assertThat(udpPort, greaterThan(0));
+        assertThat(udpPort, is(9));
+    }
+
 }
