@@ -22,7 +22,7 @@ https://www.amd.com/system/files/TechDocs/20213.pdf
 https://wiki.wireshark.org/WakeOnLAN
 
 - Synchronization Stream은 0xff로 정의한다(6byte).
-- Target MAC은 구분자 제외 16진수로 변환한다.
+- Target MAC은 구분자 제외 16진수로 전체를 채운다. 빈공간 없이 Target Mac 영역을 채워준다.
 - Password는 사용하지 않으니 패킷 정의하지 않는다.
 
 
