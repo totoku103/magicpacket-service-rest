@@ -60,4 +60,18 @@ class MagicPacketUtilsTest {
                 .startsWith(macAddress.replaceAll(":", "").toUpperCase()));
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"66:56:11:1A:4C:A2"})
+    @DisplayName("byte array를 특정 위치부터 채우기")
+    public void test_fillTargetBytes(String macAddress) {
+        final int START_POS = 3;
+        byte[] randomBytes = macAddress.getBytes();
+        byte[] resultArrays = new byte[randomBytes.length + START_POS];
+
+        final byte[] bytes = MagicPacketUtils.fillMacByteArray(resultArrays, START_POS, randomBytes);
+        Assertions.assertEquals(START_POS + randomBytes.length, bytes.length);
+        Assertions.assertEquals(bytes[0], 0);
+        Assertions.assertArrayEquals(Arrays.copyOfRange(bytes, START_POS, START_POS + randomBytes.length), randomBytes);
+    }
+
 }
