@@ -66,12 +66,12 @@ class MagicPacketUtilsTest {
     public void test_fillTargetBytes(String macAddress) {
         final int START_POS = 3;
         byte[] randomBytes = macAddress.getBytes();
-        byte[] resultArrays = new byte[randomBytes.length + START_POS];
+        byte[] resultArrays = new byte[2 * randomBytes.length + START_POS];
 
         final byte[] bytes = MagicPacketUtils.fillByteArray(resultArrays, START_POS, randomBytes);
-        Assertions.assertEquals(START_POS + randomBytes.length, bytes.length);
         Assertions.assertEquals(bytes[0], 0);
         Assertions.assertArrayEquals(Arrays.copyOfRange(bytes, START_POS, START_POS + randomBytes.length), randomBytes);
+        Assertions.assertArrayEquals(Arrays.copyOfRange(bytes, bytes.length - randomBytes.length, bytes.length), randomBytes);
     }
 
 }
