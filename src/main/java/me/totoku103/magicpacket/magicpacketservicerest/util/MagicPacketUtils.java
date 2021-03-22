@@ -23,7 +23,7 @@ public class MagicPacketUtils {
         return result;
     }
 
-    public static byte[] fillMacByteArray(byte[] fillTarget, int startIndex, byte[] source) {
+    public static byte[] fillByteArray(byte[] fillTarget, int startIndex, byte[] source) {
         for (int i = startIndex; i < fillTarget.length; i += source.length) {
             System.arraycopy(source, 0, fillTarget, i, source.length);
         }

@@ -68,7 +68,7 @@ class MagicPacketUtilsTest {
         byte[] randomBytes = macAddress.getBytes();
         byte[] resultArrays = new byte[randomBytes.length + START_POS];
 
-        final byte[] bytes = MagicPacketUtils.fillMacByteArray(resultArrays, START_POS, randomBytes);
+        final byte[] bytes = MagicPacketUtils.fillByteArray(resultArrays, START_POS, randomBytes);
         Assertions.assertEquals(START_POS + randomBytes.length, bytes.length);
         Assertions.assertEquals(bytes[0], 0);
         Assertions.assertArrayEquals(Arrays.copyOfRange(bytes, START_POS, START_POS + randomBytes.length), randomBytes);
