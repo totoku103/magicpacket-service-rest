@@ -32,11 +32,11 @@ class MagicPacketUtilsTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"66:56:11:1A:4C:A2", "01:e1:30:1f:12:31"})
-    @DisplayName("MAC 주소를 Byte Array로 변환")
+    @DisplayName("Mac주소 만큼의 길이로 Mac 정보를  Byte Array로 변환")
     public void test_macAddressToByteArray(String macAddress) {
-        final byte[] bytes = MagicPacketUtils.getMacByteArray(macAddress);
+        final byte[] bytes = MagicPacketUtils.convertByteArray(macAddress);
 
-        Assertions.assertEquals(96, bytes.length);
+        Assertions.assertEquals(6, bytes.length);
 
         Assertions.assertTrue(DatatypeConverter
                 .printHexBinary(bytes)

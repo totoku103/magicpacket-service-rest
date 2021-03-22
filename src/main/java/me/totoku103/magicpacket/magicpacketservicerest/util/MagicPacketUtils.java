@@ -12,15 +12,12 @@ public class MagicPacketUtils {
     }
 
     public static byte[] getMagicPacket(String macAddress) {
+        final byte[] result = new byte[102];
         final byte[] synchronizationByteArray = getSynchronizationByteArray();
-        final byte[] macByteArray = getMacByteArray(macAddress);
+        final byte[] macByteArray = convertByteArray(macAddress);
 
-        byte[] result = new byte[getSynchronizationByteArray().length + getMacByteArray(macAddress).length];
         System.arraycopy(synchronizationByteArray, 0, result, 0, synchronizationByteArray.length);
-
-        System.arraycopy(macByteArray, 0, result, synchronizationByteArray.length, macByteArray.length);
-
-        return result;
+        return fillByteArray(result, synchronizationByteArray.length, macByteArray);
     }
 
     public static byte[] fillByteArray(byte[] fillTarget, int startIndex, byte[] source) {
@@ -36,8 +33,8 @@ public class MagicPacketUtils {
         return result;
     }
 
-    public static byte[] getMacByteArray(String macAddress) {
-        byte[] result = new byte[96];
+    public static byte[] convertByteArray(String macAddress) {
+        byte[] result = new byte[6];
 
         final String[] split = split(macAddress);
         int i = 0;
