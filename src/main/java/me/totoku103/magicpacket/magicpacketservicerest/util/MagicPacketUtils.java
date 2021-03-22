@@ -17,9 +17,17 @@ public class MagicPacketUtils {
 
         byte[] result = new byte[getSynchronizationByteArray().length + getMacByteArray(macAddress).length];
         System.arraycopy(synchronizationByteArray, 0, result, 0, synchronizationByteArray.length);
+
         System.arraycopy(macByteArray, 0, result, synchronizationByteArray.length, macByteArray.length);
 
         return result;
+    }
+
+    public static byte[] fillMacByteArray(byte[] fillTarget, int startIndex, byte[] source) {
+        for (int i = startIndex; i < fillTarget.length; i += source.length) {
+            System.arraycopy(source, 0, fillTarget, i, source.length);
+        }
+        return fillTarget;
     }
 
     public static byte[] getSynchronizationByteArray() {
