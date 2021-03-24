@@ -25,4 +25,8 @@ https://wiki.wireshark.org/WakeOnLAN
 - Target MAC은 구분자 제외 16진수로 전체를 채운다. 빈공간 없이 Target Mac 영역을 채워준다.
 - Password는 사용하지 않으니 패킷 정의하지 않는다.
 
+- http request를 수신하여 wol 서비스를 구동한다.
+- wol 서비스 구동 후 wol이 되었는지 확인하는 프로세스 구동한다.
+    - broadcast ip에 ping 날리고 수신된 ip들에게 "arp"를 이용해 Mac address 확인한다.
+
 
