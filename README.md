@@ -28,5 +28,5 @@ https://wiki.wireshark.org/WakeOnLAN
 - http request를 수신하여 wol 서비스를 구동한다.
 - wol 서비스 구동 후 wol이 되었는지 확인하는 프로세스 구동한다.
     - broadcast ip에 ping 날리고 수신된 ip들에게 "arp"를 이용해 Mac address 확인한다.
-
+- 보안을 위해 spring security 적용
 
