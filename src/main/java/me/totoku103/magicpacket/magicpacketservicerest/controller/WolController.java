@@ -13,6 +13,6 @@ public class WolController {
 
     @PostMapping("wake-up")
     public ResponseEntity wake(@RequestBody @Valid WakeUpVo wakeUpVo) {
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(wakeUpVo);
     }
 }

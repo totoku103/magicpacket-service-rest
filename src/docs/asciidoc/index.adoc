@@ -1,0 +1,47 @@
+= Wol Service api
+totoku103.me;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 1
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+
+[[overview-http-status-codes]]
+
+응답 바디에 담겨 있는 코드
+
+|===
+| 상태 코드 | 용례
+
+| `200 OK`
+| 요청을 성공적으로 처리함
+|===
+
+[[common-response-format]]
+
+응답 형태
+
+|===
+| Key | 설명
+
+| code
+| 처리 code
+
+| message
+| 요청 처리에 대한 메시지.
+
+| result_data
+| 요청 결과 데이터
+|===
+
+[[request-api]]
+
+[[wol-service]]
+== wake on lan
+Wake on lan. magic packet을 이용하여 컴퓨터 전원을 키는 서비스.
+
+operation::{docname}[]

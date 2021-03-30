@@ -1,5 +1,6 @@
 package me.totoku103.magicpacket.magicpacketservicerest.vo.wol;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class WakeUpVo implements Serializable {
 
+    @JsonIgnore
     private final long serialVersionUID = 1L;
 
     @NotBlank
