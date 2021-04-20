@@ -13,14 +13,19 @@ import java.util.function.Function;
 @Slf4j
 @Service
 public class ProcessService {
+    private Process process;
 
-    public <R> List<R> run(List<String> commands, Function<String, R> function) throws IOException, InterruptedException {
-        final List<R> resultList = new ArrayList<>();
-
+    private void setProcess(List<String> commands) throws IOException {
+        log.info("set process");
         final ProcessBuilder processBuilder = new ProcessBuilder(commands);
         processBuilder.redirectErrorStream(true);
-        final Process process = processBuilder.start();
+        process = processBuilder.start();
+        log.info("set process completed");
+    }
+
+    private <R> List<R> functionApplyToResult(Function<String, R> function) throws IOException {
         log.info("process start");
+        final List<R> resultList = new ArrayList<>();
 
         try (BufferedReader inputStreamReader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
             String line = null;
@@ -29,15 +34,26 @@ public class ProcessService {
                 resultList.add(function.apply(line));
             }
         }
+        return resultList;
+    }
+
+    private void shutdownProcess() throws InterruptedException {
+        if (process == null) return;
 
         final int exitCode = process.waitFor();
-        log.info("Exited code : " + exitCode);
-        if (exitCode != 0) {
+        log.info("Exited code : {}", exitCode);
+        if (exitCode < 0) {
             log.error("process exited with error code: {}", exitCode);
-            throw new RuntimeException(String.format("command: %s, exitCode: %d", commands, exitCode));
+            throw new RuntimeException(String.format("exitCode: %d", exitCode));
         } else {
             log.info("process completed");
         }
-        return resultList;
+    }
+
+    public <R> List<R> run(List<String> commands, Function<String, R> function) throws IOException, InterruptedException {
+        setProcess(commands);
+        final List<R> rs = functionApplyToResult(function);
+        shutdownProcess();
+        return rs;
     }
 }

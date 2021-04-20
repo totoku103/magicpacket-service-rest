@@ -11,6 +11,10 @@ public class MagicPacketUtils {
         return result;
     }
 
+    public static String generalizeDelimit(String macAddress) {
+        return macAddress.replaceAll(":", "-");
+    }
+
     public static byte[] getMagicPacket(String macAddress) {
         final byte[] result = new byte[102];
         final byte[] synchronizationByteArray = getSynchronizationByteArray();
